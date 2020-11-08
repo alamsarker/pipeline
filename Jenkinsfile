@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-      steps {
-        echo 'Building'
+      parallel {
+        stage('Build') {
+          steps {
+            echo 'Building'
+          }
+        }
+
+        stage('build-1') {
+          steps {
+            sh 'jenkins/build.sh'
+          }
+        }
+
       }
     }
 
