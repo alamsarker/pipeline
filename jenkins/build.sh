@@ -1,2 +1,4 @@
+#!/usr/bin/env bash
+
 echo 'Building from sh file'
-sh 'docker version'
+echo "$(docker version)"
