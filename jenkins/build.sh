@@ -11,5 +11,5 @@ fi
 
 echo "$(docker ps)"
 
-docker exec -it $CONTAINER bash -c 'composer -V'
+docker exec $CONTAINER bash -c 'composer -V'
 
