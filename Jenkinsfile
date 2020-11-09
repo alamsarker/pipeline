@@ -17,8 +17,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        input(message: 'Are you sure to deploy?', ok: 'Yes')
-        echo 'Deploying..'
+        sh 'ssh root@104.131.57.194'
       }
     }
 
