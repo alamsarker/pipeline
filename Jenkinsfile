@@ -17,7 +17,9 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'jenkins/deploy.sh'
+        input(message: 'Which Server?', ok: 'Yes', parameters: [ 'Text' ])
+        echo 'Deploing...'
+        //sh 'jenkins/deploy.sh'
       }
     }
   }
