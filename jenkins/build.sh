@@ -1,2 +1,2 @@
 echo 'Building from sh file'
-sh 'docker version'
+echo "Docker Verion $(docker version)"
