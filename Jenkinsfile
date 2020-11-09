@@ -23,9 +23,9 @@ pipeline {
                     message: 'User input required - Which Server?',
                     parameters: [
                         [
-                          $class: 'TextParameterDefinition',                          
-                          name: 'input',
-                          defaultValue: 'develop',
+                          $class: 'ChoiceParameterDefinition',
+                          choices: ['Develop', 'Release', 'Live'].join('\n'),                        
+                          name: 'input',                          
                           description: 'Where will be deployed'
                         ]
                     ])
