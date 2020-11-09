@@ -17,7 +17,27 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        input(message: 'Which Server?', ok: 'Yes', parameters: [ 'Text' ])
+            script {
+            // Define Variable
+             def USER_INPUT = input(
+                    message: 'User input required - Which Server?',
+                    parameters: [
+                        [
+                          $class: 'ChoiceParameterDefinition',
+                          choices: ['Develop', 'Release', 'Live'].join('\n'),
+                          name: 'input',
+                          description: 'Menu - select box option'
+                        ]
+                    ])
+
+            echo "The answer is: ${USER_INPUT}"
+
+            if( "${USER_INPUT}" == "Develop"){
+                echo 'DELPOLYING ..'
+            } else {
+                echo 'ELSE DELPOLYING ..'
+            }
+        }
         echo 'Deploing...'
         //sh 'jenkins/deploy.sh'
       }
