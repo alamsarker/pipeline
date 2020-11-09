@@ -17,7 +17,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh './jenkins/build.sh'
+        sh './jenkins/deploy.sh'
       }
     }
 
