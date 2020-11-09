@@ -17,7 +17,7 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh 'ssh root@104.131.57.194'
+        sh 'jenkins/deploy.sh'
       }
     }
 
