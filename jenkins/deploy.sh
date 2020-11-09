@@ -2,5 +2,5 @@
 
 echo 'Deploying..'
  
-scp * root@104.131.57.194:test-deply/
+//scp * root@104.131.57.194:test-deply/
 
