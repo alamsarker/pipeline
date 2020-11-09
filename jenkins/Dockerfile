@@ -20,5 +20,4 @@ RUN apt-get update && apt-get install libxrender1
 RUN apt-get update && apt-get install -y libfontconfig1
 
 RUN apt-get install -y libxml2-dev unzip && docker-php-ext-install soap && docker-php-ext-enable soap
-
-
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
