@@ -29,7 +29,7 @@ pipeline {
           )
 
           echo "The answer is: ${ENV_SERVER}"
-          sh "ENV_SERVER=${ENV_SERVER}"
+          sh "ENV_SERVER='${ENV_SERVER}'"
 
           if( "${ENV_SERVER}" != "skip"){
             sh 'jenkins/deploy.sh'
