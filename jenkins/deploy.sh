@@ -2,10 +2,11 @@
 
 echo 'Deploying...'
 
-BUILD_TAR_FILE="$BUILD_TAG.tar.gz"
-REMOTE_SERVER="root@104.131.57.194"
 PROJECT_NAME="isalebd"
-APP_DIR="/var/www/html/develop/$PROJECT_NAME";
+BUILD_TAR_FILE="$PROJECT_NAME.tar.gz"
+REMOTE_SERVER="root@104.131.57.194"
+
+APP_DIR="/var/www/html/${ENV_SERVER}/$PROJECT_NAME";
 
 excludeDirs=(
     "./.git"
@@ -43,4 +44,6 @@ ssh -T $REMOTE_SERVER << EOF
     cd $APP_DIR
     pwd
     tar -xvf $BUILD_TAR_FILE
+    rm -rf app/cache/*
+    rm -rf app/logs/*
 EOF

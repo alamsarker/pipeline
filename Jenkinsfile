@@ -23,31 +23,25 @@ pipeline {
     stage('Deploy') {
       steps {
             script {
-            // Define Variable
-             def USER_INPUT = input(
-                    message: 'User input required - Which Server?',
-                    parameters: [
-                        [
-                          $class: 'ChoiceParameterDefinition',
-                          choices: ['Develop', 'Release', 'Live'].join('\n'),                        
-                          name: 'input',                          
-                          description: 'Where will be deployed'
-                        ]
-                    ])
+              def ENV_SERVER = input(
+                message: 'User input required - Which Server?',
+                parameters: [
+                    [
+                      $class: 'ChoiceParameterDefinition',
+                      choices: ['develop', 'release', 'prod', 'skip'].join('\n'),
+                      name: 'input',
+                      description: 'Where will be deployed'
+                    ]
+                ]
+              )
 
-            echo "The answer is: ${USER_INPUT}"
+            echo "The answer is: ${ENV_SERVER}"
 
-            if( "${USER_INPUT}" == "Develop"){
-                echo 'DELPOLYING ..'
-            } else {
-                echo 'ELSE DELPOLYING ..'
+            if( "${ENV_SERVER}" != "skip"){       
+                sh 'jenkins/deploy.sh'
             }
-        }
-        echo 'Deploing...'
-        //echo "Branch Name: $(BRANCH_NAME) - $BRANCH_NAME"
-        echo "TAG Name: $BUILD_TAG"
-        sh 'printenv'
-        sh 'jenkins/deploy.sh'
+        }      
+        //sh 'printenv'
       }
     }
   }
