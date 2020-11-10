@@ -28,19 +28,16 @@ pipeline {
             ]
           )
 
-          echo "The answer is: ${ENV_SERVER}"
-          sh "ENV_SERVER='${ENV_SERVER}'"
+          echo "The answer is: ${ENV_SERVER}"          
 
           if( "${ENV_SERVER}" != "skip"){
             sh 'jenkins/deploy.sh'
           }
         }
-
-      }
     }
-
   }
   environment {
     BUILD_TAG = "${env.BUILD_TAG}"
+    ENV_SERVER = "${ENV_SERVER}"
   }
 }
