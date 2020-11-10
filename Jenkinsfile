@@ -34,10 +34,12 @@ pipeline {
             sh 'jenkins/deploy.sh'
           }
         }
+      }
     }
   }
+
   environment {
     BUILD_TAG = "${env.BUILD_TAG}"
     ENV_SERVER = "${ENV_SERVER}"
-  }
+  }  
 }
