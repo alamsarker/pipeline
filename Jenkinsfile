@@ -42,7 +42,7 @@ pipeline {
         //echo "Branch Name: $(BRANCH_NAME) - $BRANCH_NAME"
         echo "Branch Name: ${env.GIT_BRANCH}"
         sh 'printenv'
-        //sh 'jenkins/deploy.sh'
+        sh 'jenkins/deploy.sh'
       }
     }
   }
