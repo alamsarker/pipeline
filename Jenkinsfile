@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  
+  environment {
+    BUILD_TAG = ${env.BUILD_TAG}
+  }
+  
   stages {
     stage('Build') {
       steps {
@@ -40,7 +45,7 @@ pipeline {
         }
         echo 'Deploing...'
         //echo "Branch Name: $(BRANCH_NAME) - $BRANCH_NAME"
-        echo "Branch Name: ${env.GIT_BRANCH}"
+        echo "TAG Name: $BUILD_TAG"
         sh 'printenv'
         sh 'jenkins/deploy.sh'
       }
