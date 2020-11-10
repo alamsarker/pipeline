@@ -39,7 +39,7 @@ pipeline {
             }
         }
         echo 'Deploing...'
-        echo 'Branch Name $BRANCH_NAME'
+        echo "Branch Name ${BRANCH_NAME} - $(BRANCH_NAME) - $BRANCH_NAME"
         //sh 'jenkins/deploy.sh'
       }
     }
