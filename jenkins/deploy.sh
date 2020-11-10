@@ -1,10 +1,46 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 echo 'Deploying...'
 
-echo "TAG -> $BUILD_TAG"
+BUILD_TAR_FILE="$BUILD_TAG.tar.gz"
+REMOTE_SERVER="root@104.131.57.194"
+PROJECT_NAME="isalebd"
+APP_DIR="/var/www/html/develop/$PROJECT_NAME";
 
-echo "${env.BUILD_TAG}"
+excludeDirs=(
+    "./.git"
+    "./data"
+    "./."
+    "./.."
+    "./app/cache"
+    "./app/logs"
+    "./composer.phar"
+    "./phpunit.phar"
+    "./node_modules"
+    "./bower_components"
+    "./.vscode"
+    "./package-lock.json"
+    "./build.tar.gz"
+    "./web/js/app/ng",
+    "./web/css/app/less"
+)
+
+tarCommand="tar "
+
+for dir in "${excludeDirs[@]}"
+do
+    tarCommand+="--exclude=$dir "
+done
+
+tarCommand+="-czf $BUILD_TAR_FILE ./"
+
+rm -rf $BUILD_TAR_FILE
+$tarCommand
  
-#scp * root@104.131.57.194:test-deply/
+scp $BUILD_TAR_FILE $REMOTE_SERVER:$APP_DIR/
 
+ssh -T $REMOTE_SERVER << EOF
+    cd $APP_DIR
+    pwd
+    tar -xvf $BUILD_TAR_FILE
+EOF
