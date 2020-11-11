@@ -37,6 +37,8 @@ pipeline {
               sh "jenkins/deploy.sh ${ENV_SERVER}"            
               //sh "bash -c \" source jenkins/deploy.sh ${ENV_SERVER}\"" 
             }
+          } else {
+            echo 'Skipped deploy.'
           }
         }
       }
