@@ -28,7 +28,8 @@ pipeline {
             ]
           )
 
-          echo "The answer is: ${ENV_SERVER}"          
+          echo "The answer is: ${ENV_SERVER}"
+          echo "Git Branch: "${env.GIT_BRANCH}"
 
           if( "${ENV_SERVER}" != "skip" ) {
             if( "${ENV_SERVER}" == "master" && "${env.GIT_BRANCH}" != "master" ) {
