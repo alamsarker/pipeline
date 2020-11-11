@@ -29,13 +29,13 @@ pipeline {
           )
 
           echo "The answer is: ${ENV_SERVER}"
-          echo "Git Branch: "${env.GIT_BRANCH}"
+          echo "Git Branch: ${env.GIT_BRANCH}"
 
           if( "${ENV_SERVER}" != "skip" ) {
             if( "${ENV_SERVER}" == "master" && "${env.GIT_BRANCH}" != "master" ) {
               echo 'Skipped deploy. Prod deploy requires master branch'
             } else {
-              sh "jenkins/deploy.sh ${ENV_SERVER}"            
+              //sh "jenkins/deploy.sh ${ENV_SERVER}"            
               //sh "bash -c \" source jenkins/deploy.sh ${ENV_SERVER}\"" 
             }
           } else {
