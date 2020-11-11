@@ -31,8 +31,8 @@ pipeline {
           echo "The answer is: ${ENV_SERVER}"          
 
           if( "${ENV_SERVER}" != "skip"){
-            //sh 'jenkins/deploy.sh'
-            sh "bash -c \" source jenkins/deploy.sh ${ENV_SERVER}\"" 
+            sh "jenkins/deploy.sh ${ENV_SERVER}"            
+            //sh "bash -c \" source jenkins/deploy.sh ${ENV_SERVER}\"" 
 
           }
         }
